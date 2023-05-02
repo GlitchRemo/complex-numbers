@@ -39,8 +39,8 @@ describe('Complex Numbers', function() {
       deepStrictEqual(operation.add(), {real: 7, imaginary: 7});
     });
 
-    // it('should multiply two complex numbers', function() {
-    //   deepStrictEqual(operation.multiply(), {real: -4, imaginary: 7});
-    // });
+    it('should multiply two complex numbers', function() {
+      deepStrictEqual(operation.multiply(), {real: -2, imaginary: 23});
+    });
   });
 });

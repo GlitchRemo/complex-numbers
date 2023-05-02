@@ -33,11 +33,14 @@ const operate = function(first, second) {
     };
   }
 
-  // const multiply = function() {
+  const multiply = function() {
+    const real = (first.real * second.real) - (first.imaginary * second.imaginary);
+    const imaginary = (first.real * second.imaginary) + (first.imaginary * second.real);
 
-  // }
+    return {real, imaginary};
+  }
 
-  return {add};
+  return {add, multiply};
 }
 
 exports.makeComplexNumber = makeComplexNumber;
