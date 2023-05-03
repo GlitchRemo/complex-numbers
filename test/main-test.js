@@ -24,6 +24,10 @@ describe('Complex Numbers', function() {
     it('should be multiplied with a complex number', function() {
       deepStrictEqual(first.multiply(1, 2), {realPart: -4, imaginaryPart: 7});
     });
+
+    it('should display 2 + 3i', function() {
+      strictEqual(first.display(), '2 + 3i');
+    });
   });
 
 
@@ -43,6 +47,10 @@ describe('Complex Numbers', function() {
 
     it('should be multiplied with a complex number', function() {
       deepStrictEqual(second.multiply(1, 2), {realPart: -3, imaginaryPart: 14});
+    });
+
+    it('should display 5 + 4i', function() {
+      strictEqual(second.display(), '5 + 4i');
     });
   });
 

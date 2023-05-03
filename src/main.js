@@ -10,10 +10,10 @@ const complex = function(real, imaginary) {
   }
 
   const add = function(real, imaginary) {
-    return {
-      realPart: number.real + real,
-      imaginaryPart: number.imaginary + imaginary
-    }
+    const realPart = number.real + real;
+    const imaginaryPart = number.imaginary + imaginary;
+
+    return {realPart, imaginaryPart };
   }
 
   const multiply = function(real, imaginary) {
@@ -24,7 +24,13 @@ const complex = function(real, imaginary) {
   }
 
   const display = function() {
+    if(real === 0) return `${number.imaginary}i`;
+    if(imaginary === 0) return number.real;
 
+    const Sign = number.imaginary > 0 ? '+' : '-';
+    const imaginaryPart = Math.abs(number.imaginary);
+
+    return `${number.real} ${Sign} ${imaginaryPart}i`;
   }
 
   return {
