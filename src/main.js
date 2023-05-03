@@ -1,42 +1,43 @@
 const complex = function(real, imaginary) {
-  const number = {real, imaginary};
-
   const getRealPart = function() {
-    return number.real;
+    return real;
   }
 
   const getImaginaryPart = function() {
-    return number.imaginary;
+    return imaginary;
   }
 
-  const add = function(real, imaginary) {
-    const realPart = number.real + real;
-    const imaginaryPart = number.imaginary + imaginary;
+  const add = function(c) {
+    const realPart = real + c.getRealPart();
+    const imaginaryPart = imaginary + c.getImaginaryPart();
 
-    return {realPart, imaginaryPart };
+    return complex(realPart, imaginaryPart);
   }
 
-  const multiply = function(real, imaginary) {
-    const realPart = (number.real * real) - (number.imaginary * imaginary);
-    const imaginaryPart = (number.real * imaginary) + (number.imaginary * real);
+  const multiply = function(c) {
+    const r = real;
+    const i = imaginary;
+    const cr = c.getRealPart();
+    const ci = c.getImaginaryPart();
 
-    return {realPart, imaginaryPart};
+    const realPart = (r * cr) - (i * ci);
+    const imaginaryPart = (r * ci) + (i * cr);
+
+    return complex(realPart, imaginaryPart);
   }
 
-  const display = function() {
-    if(real === 0) return `${number.imaginary}i`;
-    if(imaginary === 0) return number.real;
+  const render = function() {
+    if(imaginary === 0) return real;
+    if(real === 0) return `${imaginary}i`;
+    if(imaginary > 0) return `${real}+${imaginary}i`;
 
-    const Sign = number.imaginary > 0 ? '+' : '-';
-    const imaginaryPart = Math.abs(number.imaginary);
-
-    return `${number.real} ${Sign} ${imaginaryPart}i`;
+    return `${real}${imaginary}i`;
   }
 
   return {
     getRealPart,
     getImaginaryPart,
-    display,
+    render, 
     add,
     multiply
   };

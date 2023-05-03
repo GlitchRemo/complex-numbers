@@ -4,53 +4,40 @@ const {complex} = require('../src/main.js');
 
 describe('Complex Numbers', function() {
 
-  const first = complex(2, 3);
-  const second = complex(5, 4);
-
   describe('2 + i3', function() {
-
     it('should have the real part as 2', function() {
-      strictEqual(first.getRealPart(), 2);
+      const number = complex(2, 3);
+      strictEqual(number.getRealPart(), 2);
     });
 
     it('should have the imaginary part as 3', function() {
-      strictEqual(first.getImaginaryPart(), 3);
+      const number = complex(2, 3);
+      strictEqual(number.getImaginaryPart(), 3);
+    });
+
+    it('should render a complex number', function() {
+      const number = complex(2, 3);
+      strictEqual(number.render(), '2+3i');
     });
 
     it('should be added with a complex number', function() {
-      deepStrictEqual(first.add(5, 4), {realPart: 7, imaginaryPart: 7});
+      const addend = complex(2, 3);
+      const augend = complex(5, 4);
+
+      const sum = addend.add(augend);
+
+      strictEqual(sum.getRealPart(), 7);
+      strictEqual(sum.getImaginaryPart(), 7);
     });
 
     it('should be multiplied with a complex number', function() {
-      deepStrictEqual(first.multiply(1, 2), {realPart: -4, imaginaryPart: 7});
-    });
+      const multiplicand = complex(2, 3);
+      const multiplier = complex(5, 4);
 
-    it('should display 2 + 3i', function() {
-      strictEqual(first.display(), '2 + 3i');
-    });
-  });
+      const product = multiplicand.multiply(multiplier);
 
-
-  describe('5 + i4', function() {
-
-    it('should have the real part as 5', function() {
-      strictEqual(second.getRealPart(), 5);
-    });
-
-    it('should have the imaginary part as 4', function() {
-      strictEqual(second.getImaginaryPart(), 4);
-    });
-
-    it('should be added with a complex number', function() {
-      deepStrictEqual(second.add(2, 3), {realPart: 7, imaginaryPart: 7});
-    });
-
-    it('should be multiplied with a complex number', function() {
-      deepStrictEqual(second.multiply(1, 2), {realPart: -3, imaginaryPart: 14});
-    });
-
-    it('should display 5 + 4i', function() {
-      strictEqual(second.display(), '5 + 4i');
+      strictEqual(product.getRealPart(), -2);
+      strictEqual(product.getImaginaryPart(), 23);
     });
   });
 
