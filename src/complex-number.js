@@ -1,4 +1,4 @@
-const {Imaginary} = require('./imaginary-number.js');
+const{Imaginary} = require('./imaginary-number.js');
 const {Real} = require('./real-number.js');
 
 class Complex {
@@ -10,9 +10,9 @@ class Complex {
     this.#imaginary = imaginary;
   }
 
-  areEqual(otherComplex) {
-    const areRealEqual = this.#real.areEqual(otherComplex.#real);
-    const areImaginaryEqual = this.#imaginary.areEqual(otherComplex.#imaginary);
+  isEqual(otherComplex) {
+    const areRealEqual = this.#real.isEqual(otherComplex.#real);
+    const areImaginaryEqual = this.#imaginary.isEqual(otherComplex.#imaginary);
 
     return areRealEqual && areImaginaryEqual;
   }

@@ -8,7 +8,7 @@ describe('A real number', function() {
   const sum = new Real(3);
 
   it('should be added with another real number', function() {
-    strictEqual(real.add(otherReal).areEqual(sum), true);
+    strictEqual(real.add(otherReal).isEqual(sum), true);
   });
 });
 
@@ -18,7 +18,7 @@ describe('A real number', function() {
   const difference = new Real(1);
 
   it('should be subtracted by another real number', function() {
-    strictEqual(real.subtract(otherReal).areEqual(difference), true);
+    strictEqual(real.subtract(otherReal).isEqual(difference), true);
   });
 })
 
@@ -28,7 +28,7 @@ describe('A real number', function() {
   const product = new Real(6);
 
   it('should be multiplied with another real number', function() {
-    strictEqual(multiplier.multiply(multiplicand).areEqual(product), true);
+    strictEqual(multiplier.multiply(multiplicand).isEqual(product), true);
   });
 });
 
@@ -36,7 +36,7 @@ describe('A real number', function() {
   const real = new Real(2);
 
   it('should be compared with another real number', function() {
-    strictEqual(real.areEqual(real), true);
+    strictEqual(real.isEqual(real), true);
   });
 });
 

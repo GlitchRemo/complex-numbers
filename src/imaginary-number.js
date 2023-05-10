@@ -27,8 +27,8 @@ class Imaginary {
     return new Imaginary(product);
   }
 
-  areEqual(other) {
-    return this.#value.areEqual(other.#value);
+  isEqual(other) {
+    return this.#value.isEqual(other.#value);
   }
 
   toString() {

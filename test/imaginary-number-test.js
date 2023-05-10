@@ -1,71 +1,131 @@
-const {describe, it} = require('node:test');
-const {strictEqual, ok} = require('assert');
-const {Imaginary} = require('../src/imaginary-number.js');
-const {Real} = require('../src/real-number.js');
+const { describe, it } = require('node:test');
+const { ok } = require('assert');
+const { Imaginary } = require('../src/imaginary-number.js');
+const { Real } = require('../src/real-number.js');
 
-const two = new Real(2);
-const minusTwo = new Real(-2);
+const minusOne = new Real(-1);
+const zero = new Real(0);
 const one = new Real(1);
+const two = new Real(2);
 const three = new Real(3);
 
-describe('An imaginary number', function() {
-  const imaginary = new Imaginary(two);
-  const otherImaginary = new Imaginary(two);
+describe('Imaginary Number', function () {
+  describe('equality', function () {
 
-  it('should be compared with another imaginary number', function() {
-    ok(imaginary.areEqual(otherImaginary));
+    it('should be reflective', function () {
+      const actual = new Imaginary(two);
+
+      const expected = new Imaginary(two);
+
+      ok(actual.isEqual(expected));
+    });
   });
-});
 
-describe('An imaginary number', function() {
+  describe('addition', function () {
 
-  const addend = new Imaginary(two);
-  const augend = new Imaginary(one);
-  const sum = new Imaginary(three);
+    it('should be closed', function () {
+      const addend = new Imaginary(two);
+      const augend = new Imaginary(one);
 
-  it('should be added with another imaginary number', function() {
-    ok(addend.add(augend).areEqual(sum));
+      const expected = new Imaginary(three);
+      
+      const actual = addend.add(augend);
+  
+      ok(actual.isEqual(expected));
+    });
+
+    it('should be commutative', function () {
+      const addend = new Imaginary(one);
+      const augend = new Imaginary(two);
+
+      const expected = new Imaginary(three);
+
+      const actual = addend.add(augend);
+
+      ok(actual.isEqual(expected));
+    });
+
+    it('should provide the original back on identity', function () {
+      const number = new Imaginary(two);
+      const identity = new Imaginary(zero);
+
+      const expected = number;
+  
+      const actual = number.add(identity);
+
+      ok(actual.isEqual(expected));
+    });  
   });
-});
 
-describe('An imaginary number', function() {
+  describe('subtraction', function () {
 
-  const minuend = new Imaginary(two);
-  const subtrahend = new Imaginary(one);
-  const difference = new Imaginary(one);
+    it('should be closed', function () {
+      const subtrahend = new Imaginary(two);
+      const minuend = new Imaginary(one);
 
-  it('should be subtracted by another imaginary number', function() {
-    ok(minuend.subtract(subtrahend).areEqual(difference));
+      const expected = new Imaginary(one);
+      
+      const actual = subtrahend.subtract(minuend);
+  
+      ok(actual.isEqual(expected));
+    });
+
+    it('should not be commutative', function () {
+      const subtrahend = new Imaginary(one);
+      const minuend = new Imaginary(two);
+
+      const expected = new Imaginary(minusOne);
+
+      const actual = subtrahend.subtract(minuend);
+
+      ok(actual.isEqual(expected));
+    });
+
+    it('should provide the original back on identity', function () {
+      const number = new Imaginary(two);
+      const identity = new Imaginary(zero);
+
+      const expected = number;
+  
+      const actual = number.subtract(identity);
+
+      ok(actual.isEqual(expected));
+    });  
   });
-});
 
-describe('An imaginary number ', function() {
+  describe('multiplication', function () {
 
-  const multiplier = new Imaginary(two);
-  const multiplicand = new Imaginary(one);
-  const product = new Real(-2);
+    it('should not be closed', function () {
+      const multiplicand = new Imaginary(two);
+      const multiplier = new Imaginary(one);
 
-  it('should be multiplied should be multiplied with another imaginary number', function() {
-    ok(multiplier.multiply(multiplicand).areEqual(product));
-  });
-});
+      const expected = new Real(-2);
+      
+      const actual = multiplicand.multiply(multiplier);
+  
+      ok(actual.isEqual(expected));
+    });
 
-describe('An imaginary number ', function() {
+    it('should be commutative', function () {
+      const multiplicand = new Imaginary(one);
+      const multiplier = new Imaginary(two);
 
-  const multiplier = new Imaginary(two);
-  const multiplicand = new Real(1);
-  const product = new Imaginary(two);
+      const expected = new Real(-2);
 
-  it('should be multiplied should be multiplied with another real number', function() {
-    ok(multiplier.multiplyReal(multiplicand).areEqual(product));
-  });
-});
+      const actual = multiplicand.multiply(multiplier);
 
-describe('An imaginary number', function() {
+      ok(actual.isEqual(expected));
+    });
 
-  const imaginary = new Imaginary(two);
+    it('should provide the negation of original back on identity', function () {
+      const number = new Imaginary(two);
+      const identity = new Imaginary(one);
 
-  it('should be rendered in standard format', function() {
-    strictEqual(imaginary.toString(), '2i');
+      const expected = new Real(-2);
+  
+      const actual = number.multiply(identity);
+
+      ok(actual.isEqual(expected));
+    });  
   });
 });

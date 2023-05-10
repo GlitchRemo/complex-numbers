@@ -14,7 +14,7 @@ describe('A complex number', function() {
     const imaginary = new Imaginary(three);
     const complex = new Complex(real, imaginary);
 
-    ok(complex.areEqual(complex));
+    ok(complex.isEqual(complex));
   });
 });
 
@@ -29,7 +29,7 @@ describe('A complex number', function() {
     const imaginaryPartOfSum = new Imaginary(six);
     const sum = new Complex(realPartOfSum, imaginaryPartOfSum);
 
-    ok(complex.add(complex).areEqual(sum));
+    ok(complex.add(complex).isEqual(sum));
   });
 });
 

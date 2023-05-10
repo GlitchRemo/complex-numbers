@@ -20,7 +20,7 @@ class Real {
     return new Real(product);
   }
 
-  areEqual(other) {
+  isEqual(other) {
     return this.#value === other.#value;
   }
 
